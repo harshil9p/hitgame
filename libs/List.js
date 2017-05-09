@@ -63,12 +63,12 @@ function List(){
         }
         /* sort leaderboards */
         this.sortLeaderBoards();
-        console.log(leaderboards_);
+        console.log(leaderboards_)
         
         if(leaderboards_.length > 10){
             leaderboards_.length = 10;
         }
-        console.log(leaderboards_);
+
     }
 
     this.sortLeaderBoards = function(){

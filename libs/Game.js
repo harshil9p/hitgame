@@ -36,7 +36,6 @@ var Game = function(server){
         */
 
         rooms = this.io.sockets.adapter.rooms;
-
         /* the connection established */
         socketConnector.on('connection', function(client) {
             /* player interactions with the socket */
@@ -53,6 +52,7 @@ var Game = function(server){
             client.on('createmoderator', createModerator);
             client.on('groupinformation', groupInformation);
             client.on('kickuser', kickUser);
+            client.on('clientleave', clientLeave);
         });
     }
 
@@ -198,7 +198,9 @@ var Game = function(server){
     function checkForRoom(group){
         /* check if the room is empty and then notify the player */
 
-        if(!rooms[group] || rooms[group].length < globals['MINPLAYERS'])
+        if(!rooms[group])
+            return false;
+        if(rooms[group].length < globals['MINPLAYERS'])
             return false;
         return list_.checkForWaitingInGroup(group); /* check the state of the user waiting in the group */
     }
@@ -286,14 +288,24 @@ var Game = function(server){
                 player.setBan(group);
             if(rooms[group]){
                 var room_find = rooms[group].sockets[player.id];
-                delete rooms[group].sockets[player.id];
-                lobbyCheck(group);
+                socketConnector.connected[player.id].emit('leaveroom');
                 removeFromGroup('Oops', 'You have been removed from the server', data.user);
             }
         } else{
             errorToClient("oops", "seems like player is no more there!", this)
         }
     }
+
+
+    function clientLeave(data){
+        console.log('ok');
+        var player = list_.getPlayerByID(this.id);
+        if(player){
+            this.leave(player.group);
+            lobbyCheck(player.group);
+        }
+    }
+
 
     /* when there is error */
     function errorToClient(title, text, client){

@@ -40,7 +40,7 @@ angular.module("hitgame").controller("mainController", function($scope,	socket, 
 	socket.on('endgame', endGame);
 	socket.on('removefromgroup', removeFromGroup);
 	socket.on('leaderboardsdetails', updateLeaderBoards);
-
+	socket.on('leaveroom', leaveRoom);
 	/* error from the server */
 	socket.on('errorfromserver', errorToaster);
  
@@ -134,7 +134,9 @@ angular.module("hitgame").controller("mainController", function($scope,	socket, 
 		})
 	}
 
-
+	function leaveRoom(){
+		socket.emit('clientleave')
+	}
 
 	/* list of functions called from the DOM
 				// create groups 
