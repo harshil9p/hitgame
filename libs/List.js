@@ -7,7 +7,7 @@ function List(){
 	/* init() */
 	var players_ = {};
 	var leaderboards_ = [];
-    var moderator_ = {};
+    	var moderator_ = {};
     
 	/* getter and setter for the players */
 	this.getPlayerByID = function(id){
