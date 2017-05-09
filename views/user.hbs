@@ -34,7 +34,8 @@
                <h4>Hit Me!</h4>
                <h4 ng-if="gamestart"><b id="timer">15</b> seconds remaining.</h4>
                <div ng-hide="gamestart || gameend">
-                  <button class="btn btn-primary m-t-10" ng-click="startGame()"> [[text]] </button>
+                  <button class="btn btn-primary m-t-10" ng-click="startGame();waitnow = true" ng-hide="waitnow"> [[text]] </button>
+                  <p ng-show="waitnow">Please wait for other players....</p>
                </div>
                <p ng-if="gameend && score > -1">Your final score: [[score]]</p>
                <div ng-if="gameend && score > -1">

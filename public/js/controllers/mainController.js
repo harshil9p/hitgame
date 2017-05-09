@@ -148,6 +148,7 @@ angular.module("hitgame").controller("mainController", function($scope,	socket, 
 
 	/* join and start game */
 	$scope.joinAndStart = function(groupname){
+		$scope.waitnow = false;
 		$scope.group_name = groupname;
 		socket.emit('joingroupandstart', {groupname:groupname});
 	}
@@ -161,7 +162,7 @@ angular.module("hitgame").controller("mainController", function($scope,	socket, 
 	/* leave group */
 	$scope.leaveGroup = function(selectedgroup){
 		socket.emit('leavegroup', {});
-
+		$scope.waitnow = false;
 		/* update leaderboard score 
 		*/
 		if($scope.hidethis){
