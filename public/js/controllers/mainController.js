@@ -129,7 +129,7 @@ angular.module("hitgame").controller("mainController", function($scope,	socket, 
 
 	/* leaderboards getter */
 	function updateLeaderBoards(data){
-		$interval(function(){
+		$timeout(function(){
 			$scope.final_leaderboards = data;
 		})
 	}
