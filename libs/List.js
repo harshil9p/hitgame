@@ -45,7 +45,6 @@ function List(){
     this.setLeaderBoard = function(player){
     	var score = player.score;
     	delete player.id;
-        console.log("before ", leaderboards_)
     	/* bare minimum to be 1 if score is to be added to the leaderboards */
     	if(score < 1)
     		return false;
@@ -54,21 +53,21 @@ function List(){
         if(!leaderboards_.length){
             leaderboards_.push(player);
         } else {
-
             /* now  */
-
-            if(leaderboards_[leaderboards_.length-1] < score || leaderboards_.length < 10){
+            /* sort leaderboards */
+            this.sortLeaderBoards();
+            if(leaderboards_[0].score < score || leaderboards_.length < 10){
                 leaderboards_.push(player);
             }
         }
         /* sort leaderboards */
         this.sortLeaderBoards();
-        console.log("after ",leaderboards_);
         
         if(leaderboards_.length > 10){
             leaderboards_.length = 10;
         }
-
+        /* sort leaderboards */
+        this.sortLeaderBoards();
     }
 
     this.sortLeaderBoards = function(){
