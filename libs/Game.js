@@ -284,13 +284,15 @@ var Game = function(server){
         var player = list_.getPlayerByID(data.user['id']);
         var group = data.group;
         if(player){
-            if(data.banned)
-                player.setBan(group);
-            if(rooms[group]){
+            if(rooms[group] && player.getGroup() === group){
                 var room_find = rooms[group].sockets[player.id];
                 socketConnector.connected[player.id].emit('leaveroom');
                 removeFromGroup('Oops', 'You have been removed from the server', data.user);
+            } else{
+                errorToClient("oops", "The user has left the room or no longer exists!", this)
             }
+            if(data.banned)
+                player.setBan(group);
         } else{
             errorToClient("oops", "seems like player is no more there!", this)
         }

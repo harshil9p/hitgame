@@ -198,6 +198,7 @@ angular.module("hitgame").controller("mainController", function($scope,	socket, 
 	for error showing */
 	function errorToaster(data){
 		$timeout(function(){
+    		$scope.loader = false;
     		toaster.pop('error', data.title, data.text);
 		})
     }
