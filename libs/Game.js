@@ -4,7 +4,7 @@ var Game = function(server){
 
     /* private declarations */
     var Player = require("./Player").Player,
-        Admin = require("./Admin").Admin,
+        Moderator = require("./Moderator").Moderator,
         List = require("./List").List,
         Group = require('./Group').Group,
         cron = require('node-schedule'),
@@ -49,8 +49,8 @@ var Game = function(server){
             client.on('getleaderboards', getLeaderBoards);
             client.on('disconnect', endPlayer);
 
-            /* admin interactions */
-            client.on('createadmin', createAdmin);
+            /* moderator interactions */
+            client.on('createmoderator', createModerator);
             client.on('groupinformation', groupInformation);
             client.on('kickuser', kickUser);
         });
@@ -244,16 +244,16 @@ var Game = function(server){
 
 
 
-    /* admin interactions */
-    /* create admin */
-    function createAdmin(data){
+    /* moderator interactions */
+    /* create moderator */
+    function createModerator(data){
         if(data.name || data.id){
-            var name = data.name || "admin " + randomNumberGenerator(1,100); 
+            var name = data.name || "moderator " + randomNumberGenerator(1,100); 
             /* instantiating the player and storing it into the players library along with the 
             related methods */
-            var admin = new Admin(this.id, name);
+            var moderator = new Moderator(this.id, name);
             /* storing the player */
-            list_.setAdmin(admin);
+            list_.setModerator(moderator);
         }
     }
 
@@ -279,13 +279,17 @@ var Game = function(server){
     function kickUser(data){
         var player = list_.getPlayerByID(data.user['id']);
         var group = data.group;
-        if(data.banned)
-            player.setBan(group);
-        if(rooms[group]){
-            var room_find = rooms[group].sockets[player.id];
-            delete rooms[group].sockets[player.id];
-            lobbyCheck(group);
-            removeFromGroup('Oops', 'You have been removed from the server', data.user);
+        if(player){
+            if(data.banned)
+                player.setBan(group);
+            if(rooms[group]){
+                var room_find = rooms[group].sockets[player.id];
+                delete rooms[group].sockets[player.id];
+                lobbyCheck(group);
+                removeFromGroup('Oops', 'You have been removed from the server', data.user);
+            }
+        } else{
+            errorToClient("oops", "seems like player is no more there!", this)
         }
     }
 

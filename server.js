@@ -12,7 +12,7 @@ var port = 8080;
 
 /* routes */
 var users = require(path.join(__dirname, '/routes/users'));
-var admin = require(path.join(__dirname, '/routes/admin'));
+var moderator = require(path.join(__dirname, '/routes/moderator'));
 
 /* main execution */
 var app = express();
@@ -31,12 +31,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /* main routings */
 app.use('/users', users);
-app.use('/admin', admin);
+app.use('/moderator', moderator);
 
 
-var server = app.listen(port, function(){
-	console.log("I am listening to this server at port :" + port);
-});
+var server = app.listen(process.env.PORT || port);
 
 /* server socket initialization */
 var startIo = new socketIo(server);

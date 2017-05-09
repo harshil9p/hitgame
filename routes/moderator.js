@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* main router for the user */
 router.get('/', function(req, res, next) {
-  res.render('admin', {title: 'Hit Game'});
+  res.render('moderator', {title: 'Hit Game | moderator'});
 });
 
 

@@ -161,6 +161,12 @@ angular.module("hitgame").controller("mainController", function($scope,	socket, 
 	/* leave group */
 	$scope.leaveGroup = function(selectedgroup){
 		socket.emit('leavegroup', {});
+
+		/* update leaderboard score 
+		*/
+		if($scope.hidethis){
+			$scope.getLeaderboards();
+		}
 		$timeout(function(){
 			$scope.text = "Start Game";
 			$scope.begingame = false;

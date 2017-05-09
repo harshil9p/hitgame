@@ -1,10 +1,10 @@
 "use strict";
 
-angular.module("hitgame").controller("adminController", function($scope, toaster, $timeout, socket, $interval){
+angular.module("hitgame").controller("moderatorController", function($scope, toaster, $timeout, socket, $interval){
 
 	/* main initialization */
 
-	var admin = {};
+	var moderator = {};
 
 
 	/* connection established sd */
@@ -13,7 +13,7 @@ angular.module("hitgame").controller("adminController", function($scope, toaster
 	});
 
 	// Initial config
-	socket.emit('createadmin', createAdmin());
+	socket.emit('createmoderator', createModerator());
 	socket.emit('grouplist');
 
 
@@ -28,13 +28,13 @@ angular.module("hitgame").controller("adminController", function($scope, toaster
 
 	/* create the player 
 	*/
-	function createAdmin(){
-		$scope.adminname = prompt("what is your name?");
-		if($scope.adminname === null || $scope.adminname === undefined || $scope.adminname.trim() === ''){
-			$scope.adminname = "admin " + randomNameNumberGenerator(1,1000);
+	function createModerator(){
+		$scope.moderatorname = prompt("what is your name?");
+		if($scope.moderatorname === null || $scope.moderatorname === undefined || $scope.moderatorname.trim() === ''){
+			$scope.moderatorname = "moderator " + randomNameNumberGenerator(1,1000);
 		}
-		admin = new Admin(getRandomId(), $scope.adminname);
-		return { name: admin.name }
+		moderator = new Moderator(getRandomId(), $scope.moderatorname);
+		return { name: moderator.name }
 	}
 	
 
@@ -51,6 +51,7 @@ angular.module("hitgame").controller("adminController", function($scope, toaster
 	function userDetails(data){
 		$timeout(function(){
 			$scope.userList = data.userlist;
+			console.log($scope.userList)
 		})
 	}
 

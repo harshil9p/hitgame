@@ -7,7 +7,7 @@ function List(){
 	/* init() */
 	var players_ = {};
 	var leaderboards_ = [];
-    var admin_ = {};
+    var moderator_ = {};
     
 	/* getter and setter for the players */
 	this.getPlayerByID = function(id){
@@ -88,9 +88,9 @@ function List(){
 	}
 
 
-    /* set admin */
-    this.setAdmin = function(value){
-        admin_[value.id] = value;
+    /* set moderator */
+    this.setModerator = function(value){
+        moderator_[value.id] = value;
     }
 }
 
