@@ -58,7 +58,7 @@ var Game = function(server){
 
 
     /* create player */
-    function createPlayer(data){        
+    function createPlayer(data){
         if(data.name || data.id){
             var name = data.name || "player " + randomNumberGenerator(1,100); 
             /* instantiating the player and storing it into the players library along with the 
@@ -167,12 +167,7 @@ var Game = function(server){
         var player = list_.getPlayerByID(this.id) /* get player */
         if(player){
             var group = player.getGroup(); /* get group for checking */
-
-            //here here
-            // list_.removePlayer(this.id); /* remove player */
-
-
-
+            list_.removePlayer(this.id); /* remove player */
             lobbyCheck(group); /* remove player */
         }
     }
