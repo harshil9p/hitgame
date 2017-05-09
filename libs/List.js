@@ -92,6 +92,20 @@ function List(){
     this.setModerator = function(value){
         moderator_[value.id] = value;
     }
+
+
+
+    /* once the game begins the players are removed from the waiting */
+    this.removeWaitingFromGroup = function(group){
+        for(var key in players_){
+            if(players_.hasOwnProperty(key)){
+                if(players_[key]['group'] === group){
+                    players_[key]['waiting'] = false;
+                    console.log(players_);
+                }
+            }
+        }
+    }
 }
 
 exports.List = List;

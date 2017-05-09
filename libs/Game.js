@@ -187,6 +187,8 @@ var Game = function(server){
             group_.addOngoing(group);
             /* the game shall begin */
             socketConnector.in(group).emit('begingame', {gamebegins:true});
+            /* remove player from waiting */
+            list_.removeWaitingFromGroup(group);
             /* the countdown till the game ends. */
             countDown(group);
         }
