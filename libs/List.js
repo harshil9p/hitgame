@@ -1,14 +1,10 @@
 /* basic cache mechanism */
 /* memory for the players */
-
-var fs = require("fs");
-var leaderboards_read = require("../data_.json");
-
 function List() {
 
     /* init() */
     var players_ = {};
-    var leaderboards_ = leaderboards_read || [];
+    var leaderboards_ = [];
     var moderator_ = {};
 
     /* getter and setter for the players */
@@ -70,7 +66,6 @@ function List() {
         }
         /* sort leaderboards */
         this.sortLeaderBoards();
-        fs.writeFile("data_.json", JSON.stringify(leaderboards_), "utf8" );
     }
 
     this.sortLeaderBoards = function() {
