@@ -1,5 +1,4 @@
-# Welcome to Hit Me Game, where your speed of clicks will define how far you
-# will go
+# Welcome to Hit Me Game
 
 
 ## Getting Started
@@ -10,6 +9,6 @@
 
 ## Initialize
 
-git clone 
-npm install
-bower install
+* git clone 
+* npm install
+* bower install
