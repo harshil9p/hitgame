@@ -45,7 +45,7 @@ function List(){
     this.setLeaderBoard = function(player){
     	var score = player.score;
     	delete player.id;
-
+        console.log("before ", leaderboards_)
     	/* bare minimum to be 1 if score is to be added to the leaderboards */
     	if(score < 1)
     		return false;
@@ -63,7 +63,7 @@ function List(){
         }
         /* sort leaderboards */
         this.sortLeaderBoards();
-        console.log(leaderboards_)
+        console.log("after ",leaderboards_);
         
         if(leaderboards_.length > 10){
             leaderboards_.length = 10;
