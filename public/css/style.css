@@ -1122,6 +1122,11 @@ h1[id] {
 
 .list-group .badge{cursor:pointer;}
 
+.list-group{
+    max-height: 280px;
+    overflow: auto;
+}
+
 .onlyimage{    position: absolute;
     width: 43px;
     left: 50%;}
