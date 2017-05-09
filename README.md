@@ -9,6 +9,6 @@
 
 ## Initialize
 
-* git clone 
+* git clone https://github.com/harshil9p/hitgame.git
 * npm install
 * bower install
