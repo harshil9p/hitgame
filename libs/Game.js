@@ -303,8 +303,9 @@ var Game = function(server){
         console.log('ok');
         var player = list_.getPlayerByID(this.id);
         if(player){
-            this.leave(player.group);
-            lobbyCheck(player.group);
+            var group = player.getGroup();
+            this.leave(group);
+            lobbyCheck(group);
         }
     }
 
