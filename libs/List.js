@@ -63,11 +63,12 @@ function List(){
         }
         /* sort leaderboards */
         this.sortLeaderBoards();
+        console.log(leaderboards_);
         
         if(leaderboards_.length > 10){
             leaderboards_.length = 10;
         }
-
+        console.log(leaderboards_);
     }
 
     this.sortLeaderBoards = function(){
@@ -101,7 +102,7 @@ function List(){
             if(players_.hasOwnProperty(key)){
                 if(players_[key]['group'] === group){
                     players_[key]['waiting'] = false;
-                    console.log(players_);
+                    console.log(players_); 
                 }
             }
         }

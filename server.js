@@ -7,7 +7,7 @@ var express = require('express'),
 
 
 /* main port */
-var port = 8080;
+var port = 8079;
 
 
 /* routes */
