@@ -1122,7 +1122,9 @@ h1[id] {
 
 .list-group .badge{cursor:pointer;}
 
-
+.onlyimage{    position: absolute;
+    width: 43px;
+    left: 50%;}
 
 /* main styles */
 .m-t-10{margin-top:10px !important;}

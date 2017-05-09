@@ -24,6 +24,7 @@ angular.module("hitgame").controller("mainController", function($scope,	socket, 
 	$scope.score = 0;
 	$scope.text = "Start Game";
 
+	$scope.loader = false;// loader
 
 
 	/* on connection established */
@@ -80,6 +81,7 @@ angular.module("hitgame").controller("mainController", function($scope,	socket, 
 	function mayEnter(data){
 		if(data.enter){
 			$timeout(function(){
+				$scope.loader = false;
 				$scope.begingame = true;
 				$scope.groupname_share = data.group;
 			})
@@ -150,6 +152,7 @@ angular.module("hitgame").controller("mainController", function($scope,	socket, 
 
 	/* join and start game */
 	$scope.joinAndStart = function(groupname){
+		$scope.loader = true;
 		$scope.waitnow = false;
 		$scope.group_name = groupname;
 		socket.emit('joingroupandstart', {groupname:groupname});
