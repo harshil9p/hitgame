@@ -1,0 +1,29 @@
+{
+  "name": "hitgame",
+  "description": "User will hit the button to fight against other users around the world, and the winner gets all.",
+  "main": "server.js",
+  "authors": [
+    "harshil"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "hitgame"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7",
+    "socket.io": "^1.7.3",
+    "angular": "^1.6.4",
+    "AngularJS-Toaster": "angularjs-toaster#^2.1.0",
+    "socket.io-client": "^1.7.4"
+  }
+}

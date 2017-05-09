@@ -1,0 +1,111 @@
+<div ng-controller="mainController">
+<div class="container">
+	<p class="pull-right">Hello, <b>[[playername]]</b></p>
+</div>
+<div class="row">
+<div class="col-md-4" ng-show="!begingame">
+	<p>Room lists</p>
+	
+
+	<ul class="list-group">
+	  <li ng-repeat="group in groups.groups"  ng-click="joinAndStart(group)" class="list-group-item">[[group]]<span class="badge">join</span></li>
+	</ul>	
+
+
+	<form class="navbar-form navbar-left"> 
+		<div class="form-group"> 
+		Enter new group:
+			<input class="form-control" placeholder="name & press enter.." ng-model="groupname" my-enter="createGroup(groupname)"> 
+		</div> 
+	</form>
+	<div class="bs-callout bs-callout-info" id="callout-alerts-dismiss-plugin"> 
+	<h4>Welcome, [[playername]]</h4> 
+		<p>Please select one of the groups above and then you may begin playing the 'Hit Me' game.</p>
+	 </div>
+
+</div>
+
+
+<div class="col-md-12" ng-if="begingame">
+<button type="button" class="btn btn-danger pull-right" ng-click="leaveGroup()" aria-label="Right Align">
+  Leave Game
+</button>
+<h5>Groupname: <b>[[group_name]]</b></h5>
+	<div class="bs-docs-section">
+		<div class="bs-callout bs-callout-warning" id="callout-inputgroup-dont-mix"> 
+			<h4>Hit Me!</h4>
+			<h4 ng-if="gamestart"><b id="timer">15</b> seconds remaining.</h4> 
+			<div ng-hide="gamestart || gameend">
+				<button class="btn btn-primary m-t-10" ng-click="startGame()"> [[text]] </button>
+			</div>
+			<p ng-if="gameend && score > -1">Your final score: [[score]]</p>
+
+		<div ng-if="gameend && score > -1">
+
+		<table class="table score table-bordered m-t-10">
+				    <thead>
+				      <tr>
+				        <th>Name</th>
+				        <th>Score</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      <tr ng-class="{success:$index === 0 && leaderboard.score !== 0}" ng-repeat="leaderboard in leaderboards">
+				        <td>[[leaderboard.name]]</td>
+				        <td>[[leaderboard.score]]</td>
+				      </tr>     
+			    </tbody>
+
+			  </table>
+			</div>
+
+
+
+
+			<div class="middle-align" ng-if="gamestart">
+				<p>your score : <b>[[score]]</b></p>
+				<button class="btn btn-primary" ng-click="updateScore()"> Hit Me </button> 
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</div>
+
+<div class="row" ng-show="!begingame">
+	<hr>
+	<!-- leaderboards -->
+	<button class="btn btn-primary" ng-click="getLeaderboards();hidethis = true" ng-hide="hidethis">Show LeaderBoards</button>
+
+
+	<div class="container m-t-10">
+	<div class="col-md-6 col-md-offset-3" ng-show="final_leaderboards.leaderboards.length > 0">
+		<p class="text-center"><b>Leaderboards</b></p>
+		<table class="table">
+		   <thead>
+		      <tr>
+		         <th>#</th>
+		         <th>Name</th>
+		         <th>Score</th>
+		      </tr>
+		   </thead>
+		   <tbody>
+		      <tr ng-repeat="leader in final_leaderboards.leaderboards">
+		         <th scope="row">[[$index + 1]]</th>
+		         <td>[[ leader.name ]]</td>
+		         <td><b>[[ leader.score ]]</b>pts</td>
+		      </tr>
+		   </tbody>
+		</table>
+	</div>
+
+	<div class="col-md-6 col-md-offset-3" ng-show="final_leaderboards.leaderboards.length == 0">
+		<p class="text-center"><b>No leaderboards data, sorry.</b></p>
+	</div>
+
+	</div>
+
+</div>
+
+</div>

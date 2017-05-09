@@ -1,0 +1,75 @@
+<div ng-controller="adminController">
+<div class="container">
+	<p class="pull-left"><b>Admin</b></p>
+	<p class="pull-right">Hello, <b>[[adminname]]</b></p>
+</div>
+<div class="row">
+<div class="col-md-4">
+	<p>Room lists</p>
+	
+	
+	<ul class="list-group">
+	  <li ng-repeat="group in groups.groups"  ng-click="roomInformation(group)" class="list-group-item">[[group]]<span class="badge">join</span></li>
+	</ul>	
+	
+
+	<form class="navbar-form navbar-left"> 
+		<div class="form-group"> 
+		Enter new group:
+			<input class="form-control" placeholder="name & press enter.." ng-model="groupname" my-enter="createGroup(groupname)"> 
+		</div> 
+	</form>
+
+
+</div>
+
+<div class="col-md-8" ng-if="groupinstance">
+		<p>user/s in group: <b>[[groupinstance]]</b></p>
+	<ul ng-if="userList">
+		<li class="list-group-item" ng-repeat="userlist in userList">[[$index + 1]]) [[userlist.name]] 
+			<span class="color-red pull-right m-r-l-10" ng-click="kick(userlist, true);userList.splice($index, 1);">Ban</span>
+			
+			<span class="color-red pull-right m-r-l-10" ng-click="kick(userlist, false);userList.splice($index, 1);">Kick</span>
+		</li>
+	</ul>
+	<p ng-if="userList.length == 0">No players.</p>
+
+
+</div>
+</div>
+<div class="row">
+	<hr>
+	<!-- leaderboards -->
+	<button class="btn btn-primary" ng-click="getLeaderboards();hidethis = true" ng-hide="hidethis">Show LeaderBoards</button>
+
+
+	<div class="container m-t-10">
+	<div class="col-md-6 col-md-offset-3" ng-show="final_leaderboards.leaderboards.length > 0">
+		<p class="text-center"><b>Leaderboards</b></p>
+		<table class="table">
+		   <thead>
+		      <tr>
+		         <th>#</th>
+		         <th>Name</th>
+		         <th>Score</th>
+		      </tr>
+		   </thead>
+		   <tbody>
+		      <tr ng-repeat="leader in final_leaderboards.leaderboards">
+		         <th scope="row">[[$index + 1]]</th>
+		         <td>[[ leader.name ]]</td>
+		         <td><b>[[ leader.score ]]</b>pts</td>
+		      </tr>
+		   </tbody>
+		</table>
+	</div>
+
+	<div class="col-md-6 col-md-offset-3" ng-show="final_leaderboards.leaderboards.length == 0">
+		<p class="text-center"><b>No leaderboards data, sorry.</b></p>
+	</div>
+
+	</div>
+
+</div>
+
+</div>

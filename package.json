@@ -1,0 +1,23 @@
+{
+  "name": "hitgame",
+  "version": "1.0.0",
+  "description": "User will hit the button to fight against other users around the world, and the winner gets all.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hitgame"
+  ],
+  "author": "harshil",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0",
+    "hbs": "^4.0.1",
+    "node-schedule": "^1.2.1",
+    "nodemon": "^1.11.0",
+    "socket.io": "^1.7.3"
+  }
+}
