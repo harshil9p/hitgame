@@ -7,7 +7,6 @@ var Game = function(server){
         Moderator = require("./Moderator").Moderator,
         List = require("./List").List,
         Group = require('./Group').Group,
-        cron = require('node-schedule'),
         io = require('socket.io');
 
 
@@ -326,13 +325,6 @@ var Game = function(server){
     function randomNumberGenerator(begin, end){
         return Math.floor(Math.random() * end) + begin;
     }
-
-
-    /* run cron to empty out the leaderboards on this connection */
-    cron.scheduleJob({hour: 23, minute: 59, dayOfWeek:0 }, function(){
-        list_.emptyLeaderBoards();
-    });
-
 
 }   
 

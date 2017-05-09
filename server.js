@@ -3,8 +3,9 @@ var express = require('express'),
   path = require('path'),
   bodyParser = require('body-parser'),
   hbs = require('express-handlebars')
-  socketIo = require(path.join(__dirname, '/libs/Game'));
-
+  socketIo = require(path.join(__dirname, '/libs/Game')),
+  cron = require('node-schedule'),
+  fs = require('fs');
 
 /* main port */
 var port = 8079;
@@ -47,6 +48,12 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+/* cron : empty out the leaderboards */
+cron.scheduleJob({hour: 23, minute: 59, dayOfWeek:0 }, function(){
+    fs.writeFile("data_.json", '[]', "utf8" );
+});
+
 
 /* error handler */
 app.use(function(err, req, res, next) {
