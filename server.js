@@ -35,7 +35,7 @@ app.use('/admin', admin);
 
 
 var server = app.listen(port, function(){
-	console.log("I am listening to this server");
+	console.log("I am listening to this server at port :" + port);
 });
 
 /* server socket initialization */

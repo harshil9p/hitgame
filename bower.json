@@ -21,7 +21,6 @@
   "dependencies": {
     "jquery": "^3.2.1",
     "bootstrap": "^3.3.7",
-    "socket.io": "^1.7.3",
     "angular": "^1.6.4",
     "AngularJS-Toaster": "angularjs-toaster#^2.1.0",
     "socket.io-client": "^1.7.4"
