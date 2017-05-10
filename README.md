@@ -13,5 +13,5 @@
 * cd hitgame
 * npm install
 * bower install
-* nodemon server.js
+* node server.js 
 * it's running on '8079' port on localhost
