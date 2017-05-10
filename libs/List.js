@@ -59,8 +59,16 @@ function List() {
             /* now  */
             /* sort leaderboards */
             this.sortLeaderBoards();
-            if (leaderboards_[0].score < score || leaderboards_.length < 10) {
+            if (leaderboards_.length < 10) {
                 leaderboards_.push(player);
+            } else {
+                var temp__ = leaderboards_;
+                for(var i = 0; i < temp__.length; i++){
+                  if(temp__[i].score <= score){
+                    leaderboards_.push(player);
+                    break;
+                  }
+                }
             }
         }
         /* sort leaderboards */
